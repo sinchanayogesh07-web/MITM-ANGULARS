@@ -1,11 +1,78 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myApp">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Management Application</title>
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
 </head>
-<body>
-    <h1> welcome to my webpage</h1>
+
+<body ng-controller="CollegeController">
+
+    <h1>{{collegeName}}</h1>
+
+    <h2>Student Management Mini Application</h2>
+
+    <div ng-controller="StudentController">
+
+        <h2>Student Registration Form</h2>
+
+        <label>Student Name:</label>
+        <input type="text" ng-model="name">
+        <br><br>
+
+        <label>Department:</label>
+        <input type="text" ng-model="department">
+        <br><br>
+
+        <label>Semester:</label>
+        <input type="number" ng-model="semester">
+        <br><br>
+
+        <label>Marks:</label>
+        <input type="number" ng-model="marks">
+        <br><br>
+
+        <button ng-click="addStudent()">Add Student</button>
+
+        <button ng-click="showDetails = !showDetails">
+            Show / Hide Details
+        </button>
+
+        <h2>Student List</h2>
+
+        <ul>
+            <li ng-repeat="student in students">
+                {{student}}
+            </li>
+        </ul>
+
+        <div ng-show="showDetails">
+
+            <h2>Student Details</h2>
+
+            <p>Name: {{name}}</p>
+            <p>Department: {{department}}</p>
+            <p>Semester: {{semester}}</p>
+            <p>Marks: {{marks}}</p>
+
+        </div>
+
+        <h2>Examination Result</h2>
+
+        <p ng-if="marks >= 40"
+           ng-class="{'pass': marks >= 40}">
+            Pass
+        </p>
+
+        <p ng-if="marks !== undefined && marks !== null && marks !== '' && marks < 40"
+           ng-class="{'fail': marks < 40}">
+            Needs Improvement
+        </p>
+
+    </div>
+
 </body>
 </html>
